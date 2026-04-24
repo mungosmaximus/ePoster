@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregled</title>
+  <favicon class="png"></favicon>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="page-viewer">
+
+<header class="header">
+  <img src="logo.png" alt="Logo">
+  <h1 id="nav-title"></h1>
+</header>
+
+<nav class="viewer-nav">
+
+  <!-- LEVO: strelice + TOC -->
+  <div class="nav-left">
+    <button class="nav-btn" onclick="prev()" aria-label="Previous">
+      <img src="strelica_nazad.png" alt="Nazad">
+    </button>
+
+    <button class="nav-btn" onclick="next()" aria-label="Next">
+      <img src="strelica_napred.png" alt="Napred">
+    </button>
+
+    <a href="index.html" class="toc-link">TABLE OF CONTENTS</a>
+  </div>
+
+  <!-- DESNO: naziv postera -->
+  <div class="nav-right">
+    <span id="nav-poster-title"></span>
+  </div>
+
+</nav>
+
+<main class="viewer-main">
+  <div id="viewer-container"></div>
+</main>
+
+<footer class="footer footer-viewer">
+  <span>Buzz.IT</span>
+  <span>|</span>
+  <a href="https://buzz.it.co.rs" target="_blank">buzz.it.co.rs</a>
+  <span>|</span>
+  <a href="mailto:office@buzz.it.co.rs">office@buzz.it.co.rs</a>
+</footer>
+
+<script src="materijal/manifest.js"></script>
+<script src="app.js"></script>
+<script>
+  ucitajViewer();
+</script>
+
+</body>
+</html>

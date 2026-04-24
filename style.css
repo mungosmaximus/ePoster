@@ -1,0 +1,162 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header img {
+  height: 32px;
+}
+
+/* INDEX */
+.page-index {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.index-main {
+  flex: 1;
+  padding: 32px 0;
+}
+
+.material-grid {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  gap: 28px;
+}
+
+@media (min-width: 1024px) {
+  .material-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 600px) and (max-width: 1023px) {
+  .material-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 599px) {
+  .material-grid { grid-template-columns: 1fr; }
+}
+
+.material-card {
+  width: 100%;
+  text-decoration: none;
+  color: #0f172a;
+}
+
+/* THUMBNAIL */
+.thumbnail-wrap {
+  padding: 25px;
+  border-radius: 15px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.thumbnail-media {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* TITLE */
+.material-title {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* VIEWER */
+.page-viewer {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  height: 100vh;
+}
+
+.viewer-main {
+  overflow: hidden;
+}
+
+#viewer-container {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+/* VIEWER NAV */
+.viewer-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toc-link {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-size: 13px;
+  color: #374151;
+  text-decoration: none;
+  margin-left: 8px;
+}
+
+.nav-right {
+  font-size: 13px;
+  color: #4b5563;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+/* NAV BUTTONS */
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.nav-btn img {
+  height: 22px;
+  width: auto;
+}
+
+/* FOOTER */
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  font-size: 12px;
+  font-style: italic;
+  color: #4b5563;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+}
+
+.footer a {
+  color: #4b5563;
+  text-decoration: none;
+}

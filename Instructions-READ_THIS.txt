@@ -1,0 +1,184 @@
+# ePoster Viewer – README
+
+## OVERVIEW
+
+This project is a lightweight, offline‑ready ePoster viewer designed for conferences, exhibitions, and kiosk setups.
+
+It displays poster images in a responsive grid and provides a clean, distraction‑free viewer with keyboard and mouse navigation.
+
+*   No server required
+*   Works from local filesystem (file://)
+*   JPG‑only posters for maximum stability
+*   Fast thumbnail loading with session caching
+*   Numeric ordering via auto‑generated manifest
+
+***
+
+## FEATURES
+
+INDEX (POSTER GRID)
+
+*   Responsive grid layout (desktop, tablet, mobile)
+*   Large, clean thumbnails
+*   Poster titles displayed WITHOUT file extension and WITHOUT numeric prefix
+*   Thumbnails cached per session for faster navigation
+*   Click any poster to open it in the viewer
+
+VIEWER
+
+*   Full‑screen poster display (image scaled to fit screen)
+*   Navigation methods:
+    *   Mouse wheel (scroll up / down)
+    *   Keyboard arrows (Left / Right)
+    *   On‑screen navigation buttons
+*   Navigation bar includes:
+    *   TABLE OF CONTENTS (return to index)
+    *   Previous / Next arrows
+    *   Current poster title (clean name, no number, no extension)
+*   Elegant layout suitable for kiosks and presentations
+
+***
+
+## FOLDER STRUCTURE
+
+ePoster/
+index.html
+viewer.html
+app.js
+style.css
+favicon.ico
+strelica_nazad.png
+strelica_napred.png
+materijal/
+...build_manifest.bat
+...manifest.js
+...manifest.json
+...001. Poster Title.jpg
+...002. Another Poster.jpg
+...
+
+***
+
+## HOW TO ADD POSTERS
+
+1.  PREPARE POSTER IMAGES
+
+*   Supported formats: JPG / JPEG / PNG
+*   Recommended orientation: portrait (A0/A1 ratio works best)
+*   File name format:
+
+    NN. Poster Title.jpg
+
+Examples:
+001. Dejan Miljković.jpg
+002. Amela Nuhović.jpg
+010. Marko Petrović.jpg
+
+Rules:
+
+*   The number at the beginning controls the display order
+*   The number and file extension are NOT shown in the UI
+
+***
+
+2.  PLACE FILES
+
+Copy all poster image files into the "materijal" folder.
+
+***
+
+3.  GENERATE THE MANIFEST
+
+Inside the "materijal" folder,
+firstly delete example:
+    *   manifest.json
+    *   manifest.js
+
+ then run:
+
+build_manifest.bat
+
+This will:
+
+*   Scan all image files
+*   Sort them numerically by the number in the filename
+*   Generate:
+    *   manifest.json
+    *   manifest.js
+
+You only need to run this again if you add, remove, or rename posters.
+
+***
+
+4.  OPEN THE APPLICATION
+
+Open index.html in any modern browser.
+
+*   No server
+*   No build step
+*   No dependencies
+
+***
+
+## NAMING RULES (IMPORTANT)
+
+Correct:
+001. Title.jpg
+002. Another Title.jpg
+010. Final Poster.jpg
+114. Final Final Poster.jpg
+...
+
+Avoid:
+Poster.jpg        (no number – placed at the end)
+A1. Poster.jpg    (non‑numeric prefix)
+
+***
+
+## CONTROLS SUMMARY
+
+INDEX
+
+*   Click a poster to open it
+
+VIEWER
+
+*   Mouse wheel: Previous / Next poster
+*   Left arrow key: Previous poster
+*   Right arrow key: Next poster
+*   TABLE OF CONTENTS: Back to index
+
+***
+
+## BROWSER COMPATIBILITY
+
+Tested and works reliably in:
+
+*   Chrome
+*   Edge
+*   Firefox
+
+Recommended for kiosk use:
+
+*   Chrome or Edge in full‑screen mode (F11 on keyboard)
+
+***
+
+## NOTES FOR KIOSK / EXHIBITION USE
+
+*   Designed to run fully offline
+*   Stable for long sessions
+*   No PDF rendering
+*   No CORS issues
+*   Minimal CPU and memory usage
+*   Suitable for USB stick or local disk deployment
+
+***
+
+## LICENSE / USAGE
+
+This project is intended for internal, educational, and exhibition use.
+You are free to adapt and customize it for your event or institution.
+
+***
+
