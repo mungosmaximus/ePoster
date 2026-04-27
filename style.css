@@ -8,7 +8,8 @@ html, body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 .header {
   display: flex;
   align-items: center;
@@ -22,65 +23,90 @@ html, body {
   height: 32px;
 }
 
-/* INDEX */
+/* ================= INDEX PAGE LAYOUT ================= */
+
 .page-index {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  display: flex;              /* ✅ FIX */
+  flex-direction: column;     /* ✅ FIX */
+  min-height: 100vh;          /* ✅ FIX */
   background: #f8fafc;
 }
 
 .index-main {
-  flex: 1;
+  flex: 1;                    /* ✅ FIX: pushes footer down */
   padding: 32px 0;
 }
+
+/* ================= GRID ================= */
 
 .material-grid {
   width: 90%;
   margin: 0 auto;
   display: grid;
   gap: 28px;
+  align-items: start;         /* ✅ FIX: prevents stretching */
 }
 
 @media (min-width: 1024px) {
-  .material-grid { grid-template-columns: repeat(3, 1fr); }
+  .material-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
+
 @media (min-width: 600px) and (max-width: 1023px) {
-  .material-grid { grid-template-columns: repeat(2, 1fr); }
+  .material-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
 @media (max-width: 599px) {
-  .material-grid { grid-template-columns: 1fr; }
+  .material-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .material-card {
-  width: 100%;
   text-decoration: none;
-  color: #0f172a;
+  color: inherit;
 }
 
-/* THUMBNAIL */
+/* ================= THUMBNAIL ================= */
+
 .thumbnail-wrap {
   padding: 25px;
   border-radius: 15px;
   background: #e5e7eb;
-  overflow: hidden;
 }
 
 .thumbnail-media {
   width: 100%;
-  height: auto;
   display: block;
 }
 
-/* TITLE */
-.material-title {
-  margin-top: 8px;
+/* ================= INDEX META ================= */
+
+.poster-meta {
+  margin-top: 12px;
   text-align: center;
-  font-size: 14px;
-  font-weight: 500;
 }
 
-/* VIEWER */
+.poster-author {
+  font-size: 18px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.poster-title {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #374151;
+}
+
+/* ================= VIEWER ================= */
+
 .page-viewer {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
@@ -95,13 +121,25 @@ html, body {
   width: 100%;
   height: 100%;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* VIEWER NAV */
+/* ✅ Version 2.5 image scaling */
+.viewer-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ================= NAV ================= */
+
 .viewer-nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 10px 20px;
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
@@ -110,40 +148,27 @@ html, body {
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-.toc-link {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 600;
-  font-size: 13px;
-  color: #374151;
-  text-decoration: none;
-  margin-left: 8px;
+.nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-btn img {
+  height: 22px;
 }
 
 .nav-right {
   font-size: 13px;
   color: #4b5563;
   font-style: italic;
-  white-space: nowrap;
 }
 
-/* NAV BUTTONS */
-.nav-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
+/* ================= FOOTER ================= */
 
-.nav-btn img {
-  height: 22px;
-  width: auto;
-}
-
-/* FOOTER */
 .footer {
   display: flex;
   justify-content: center;
@@ -156,7 +181,15 @@ html, body {
   border-top: 1px solid #e2e8f0;
 }
 
-.footer a {
-  color: #4b5563;
-  text-decoration: none;
+/* ===== VIEWER: TABLE OF CONTENTS LINK ===== */
+
+.viewer-nav a,
+.viewer-nav a:link,
+.viewer-nav a:visited,
+.viewer-nav a:hover,
+.viewer-nav a:active,
+.viewer-nav a:focus {
+  text-decoration: none;   /* ✅ no underline */
+  color: #374151;          /* ✅ fixed color */
+  outline: none;           /* ✅ no focus outline */
 }

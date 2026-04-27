@@ -1,46 +1,22 @@
-# ePoster Viewer – README
+USER INSTRUCTIONS – ePOSTER VIEWER
+OVERVIEW
+This application is an offline ePoster viewer designed for conferences, exhibitions, and kiosk displays.
+It displays poster images in a responsive grid (Index page) and provides a clean, distraction‑free Viewer with keyboard and mouse navigation.
+The system supports optional metadata (author name and poster title) provided via a CSV file.
+No server, no database, and no internet connection are required.
 
-## OVERVIEW
+BASIC FEATURES
+• Offline use (opens directly from file system)
+• Responsive grid of poster thumbnails
+• Full‑screen poster viewer
+• Keyboard navigation (Left / Right arrows)
+• Mouse wheel navigation
+• On‑screen navigation arrows
+• Clean kiosk‑style layout
+• Fast loading using image thumbnails
+• Optional author & title metadata
 
-This project is a lightweight, offline‑ready ePoster viewer designed for conferences, exhibitions, and kiosk setups.
-
-It displays poster images in a responsive grid and provides a clean, distraction‑free viewer with keyboard and mouse navigation.
-
-*   No server required
-*   Works from local filesystem (file://)
-*   JPG‑only posters for maximum stability
-*   Fast thumbnail loading with session caching
-*   Numeric ordering via auto‑generated manifest
-
-***
-
-## FEATURES
-
-INDEX (POSTER GRID)
-
-*   Responsive grid layout (desktop, tablet, mobile)
-*   Large, clean thumbnails
-*   Poster titles displayed WITHOUT file extension and WITHOUT numeric prefix
-*   Thumbnails cached per session for faster navigation
-*   Click any poster to open it in the viewer
-
-VIEWER
-
-*   Full‑screen poster display (image scaled to fit screen)
-*   Navigation methods:
-    *   Mouse wheel (scroll up / down)
-    *   Keyboard arrows (Left / Right)
-    *   On‑screen navigation buttons
-*   Navigation bar includes:
-    *   TABLE OF CONTENTS (return to index)
-    *   Previous / Next arrows
-    *   Current poster title (clean name, no number, no extension)
-*   Elegant layout suitable for kiosks and presentations
-
-***
-
-## FOLDER STRUCTURE
-
+FOLDER STRUCTURE
 ePoster/
 index.html
 viewer.html
@@ -50,135 +26,107 @@ favicon.ico
 strelica_nazad.png
 strelica_napred.png
 materijal/
-...build_manifest.bat
-...manifest.js
-...manifest.json
-...001. Poster Title.jpg
-...002. Another Poster.jpg
-...
-
-***
-
-## HOW TO ADD POSTERS
-
-1.  PREPARE POSTER IMAGES
-
-*   Supported formats: JPG / JPEG / PNG
-*   Recommended orientation: portrait (A0/A1 ratio works best)
-*   File name format:
-
-    NN. Poster Title.jpg
-
-Examples:
-001. Dejan Miljković.jpg
-002. Amela Nuhović.jpg
-010. Marko Petrović.jpg
-
-Rules:
-
-*   The number at the beginning controls the display order
-*   The number and file extension are NOT shown in the UI
-
-***
-
-2.  PLACE FILES
-
-Copy all poster image files into the "materijal" folder.
-
-***
-
-3.  GENERATE THE MANIFEST
-
-Inside the "materijal" folder,
-firstly delete example:
-    *   manifest.json
-    *   manifest.js
-
- then run:
-
 build_manifest.bat
-
-This will:
-
-*   Scan all image files
-*   Sort them numerically by the number in the filename
-*   Generate:
-    *   manifest.json
-    *   manifest.js
-
-You only need to run this again if you add, remove, or rename posters.
-
-***
-
-4.  OPEN THE APPLICATION
-
-Open index.html in any modern browser.
-
-*   No server
-*   No build step
-*   No dependencies
-
-***
-
-## NAMING RULES (IMPORTANT)
-
-Correct:
-001. Title.jpg
-002. Another Title.jpg
-010. Final Poster.jpg
-114. Final Final Poster.jpg
+build_titles_js.bat
+manifest.js
+titles.js        (optional)
+titles.csv       (optional, source file)
+001. Poster Name.jpg
+002. Another Poster.jpg
 ...
 
-Avoid:
-Poster.jpg        (no number – placed at the end)
-A1. Poster.jpg    (non‑numeric prefix)
+ADDING POSTERS
 
-***
+Prepare poster images
 
-## CONTROLS SUMMARY
+• Supported formats: JPG / JPEG / PNG
+• Recommended orientation: portrait
+• Recommended naming format:
+NNN. Poster Name.jpg
+Examples:
+001. Poster Land.jpg
+002. Urban Mornings.jpg
+010. Digital Pathology.jpg
+The number at the beginning defines the display order.
 
-INDEX
 
-*   Click a poster to open it
+Place images
 
-VIEWER
+Copy all poster images into the materijal folder.
 
-*   Mouse wheel: Previous / Next poster
-*   Left arrow key: Previous poster
-*   Right arrow key: Next poster
-*   TABLE OF CONTENTS: Back to index
 
-***
+Generate the poster list
 
-## BROWSER COMPATIBILITY
+Inside the materijal folder, run:
+build_manifest.bat
+This creates:
+• manifest.js – list of poster files in correct order
+Run this again whenever posters are added, removed, or renamed.
 
-Tested and works reliably in:
+OPTIONAL: ADDING AUTHORS AND POSTER TITLES
+Author names and poster titles can be added using a CSV file.
+If no CSV is provided, the system works normally and displays poster names based on file names.
 
-*   Chrome
-*   Edge
-*   Firefox
+CSV FORMAT
+File name: titles.csv
+Location: materijal/
+Encoding: UTF‑8 (without BOM recommended)
+Required columns (exact names):
+ID,name,title
+Example:
+ID,name,title
+001,Author 1,Just some land during spring
+002,Author 2,Urban mornings
+010,Author 3,Digital pathology systems
+Rules:
+• ID must match the numeric prefix of the poster file
+• name is the author’s name
+• title is the poster title
+• Commas inside fields are NOT supported
 
-Recommended for kiosk use:
+GENERATING TITLES METADATA
+After creating or editing titles.csv, run:
+build_titles_js.bat
+This creates:
+• titles.js – metadata file used by the viewer
+You only need to rerun this script if:
+• titles.csv is changed
+• new posters are added
+• IDs are modified
 
-*   Chrome or Edge in full‑screen mode (F11 on keyboard)
+HOW TITLES ARE DISPLAYED
+INDEX PAGE (thumbnail grid):
+If titles.js exists:
+• First line: Author name
+• Second line: POSTER TITLE (ALL CAPS)
+If titles.js does NOT exist:
+• Poster name is derived from the file name
 
-***
+VIEWER PAGE:
+• Header title: Poster title (from titles.js)
+• Right side of navigation bar: Author name
+• If metadata is missing, file name is used as fallback
 
-## NOTES FOR KIOSK / EXHIBITION USE
+VIEWER CONTROLS
+Keyboard:
+• Left Arrow – Previous poster
+• Right Arrow – Next poster
+Mouse:
+• Scroll up – Previous poster
+• Scroll down – Next poster
+Navigation bar:
+• TABLE OF CONTENTS – return to index
+• Arrow buttons – previous / next poster
 
-*   Designed to run fully offline
-*   Stable for long sessions
-*   No PDF rendering
-*   No CORS issues
-*   Minimal CPU and memory usage
-*   Suitable for USB stick or local disk deployment
+IMPORTANT NOTES
+• Always regenerate manifest.js after changing posters
+• Always regenerate titles.js after changing titles.csv
+• Poster IDs must stay consistent between filenames and CSV
+• The application is designed for long‑running kiosk use
+• No server or browser permissions are required
 
-***
-
-## LICENSE / USAGE
-
-This project is intended for internal, educational, and exhibition use.
-You are free to adapt and customize it for your event or institution.
-Credits would be much appreciated but not necessary.
-***
-
+RECOMMENDED BROWSERS
+• Chrome
+• Edge
+• Firefox
+For kiosk use, full‑screen mode is recommended (simple F11 press on the keyboard will work too).

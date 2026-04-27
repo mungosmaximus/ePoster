@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pregled</title>
-  <favicon class="png"></favicon>
+  <title>Poster Viewer</title>
+
+  <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,40 +16,40 @@
 </header>
 
 <nav class="viewer-nav">
-
-  <!-- LEVO: strelice + TOC -->
   <div class="nav-left">
-    <button class="nav-btn" onclick="prev()" aria-label="Previous">
-      <img src="strelica_nazad.png" alt="Nazad">
+    <button class="nav-btn" onclick="prev()">
+      <img src="strelica_nazad.png" alt="Previous">
     </button>
 
-    <button class="nav-btn" onclick="next()" aria-label="Next">
-      <img src="strelica_napred.png" alt="Napred">
+    <button class="nav-btn" onclick="next()">
+      <img src="strelica_napred.png" alt="Next">
     </button>
 
     <a href="index.html" class="toc-link">TABLE OF CONTENTS</a>
   </div>
 
-  <!-- DESNO: naziv postera -->
   <div class="nav-right">
     <span id="nav-poster-title"></span>
   </div>
-
 </nav>
 
 <main class="viewer-main">
   <div id="viewer-container"></div>
 </main>
 
-<footer class="footer footer-viewer">
+<footer class="footer">
   <span>Buzz.IT</span>
   <span>|</span>
-  <a href="https://buzz.it.co.rs" target="_blank">buzz.it.co.rs</a>
+  <span>www.buzz-it.co.rs</span>
   <span>|</span>
-  <a href="mailto:office@buzz.it.co.rs">office@buzz.it.co.rs</a>
+  <span>office@buzz-it.co.rs</span>
 </footer>
 
+<!-- DATA -->
 <script src="materijal/manifest.js"></script>
+<script src="materijal/titles.js"></script> <!-- optional -->
+
+<!-- APP -->
 <script src="app.js"></script>
 <script>
   ucitajViewer();
